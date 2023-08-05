@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;   */
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; 
+}
+
+/* Dark mode */
+[data-dark="true"] {
+  --Theme : #242424;
+  --Grey : #e3e3e3;  
+  --Transition : .4s;
+  --DarkBlur : rgba(0, 0, 0, 0.6);
+  --DarkWindow : rgba(20,20,20,0.97);
+  --DarkWindowLight : rgba(35,35,35,0.8);
+  --DarkSidebar : rgba(50,50,50,1);
+  --DarkText : rgba(255,255,255,1);
+  --Wallpaper : url('img/wallpaper-dark.jpg');
+  --Blur : blur(10px);
+  --HoverBlur : rgba(255, 255, 255, 0.2);
+}
+
+/* Dark mode */
+[data-dark="false"] {
+  --Theme : #242424;
+  --Grey : #e3e3e3;  
+  --Transition : .4s;
+  --DarkBlur : rgba(0, 0, 0, 0);
+  --DarkWindow : rgba(255,255,255,0.93);
+  --DarkWindowLight : rgba(255,255,255,0.5);
+  --DarkSidebar : rgba(200,200,200,1);
+  --DarkText : rgba(0,0,0,1);
+  --Wallpaper : url('img/wallpaper-light.jpg');
+  --Blur : blur(10px);
+  --HoverBlur : rgba(125, 125, 125, 0.2);
+}
+
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: var(--DarkWindow) var(--DarkWindow);
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Jost', sans-serif; */
+
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--DarkWindow);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--DarkSidebar);
+    border-radius: 10px;
+  }
+
+.react-resizable {
+  /* position: relative; */
+}
+/* .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmYwMCIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iNnB4Ij48ZyBvcGFjaXR5PSIwLjMwMiI+PHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+');
+  background-position: bottom right;
+  padding: 0 3px 3px 0;
+} */
+/* .react-resizable-handle-sw {
+  bottom: 0;
+  left: 0;
+  cursor: sw-resize;
+  transform: rotate(90deg);
+} */
+/* .react-resizable-handle-se {
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+} */
+.react-resizable-handle-nw {
+  top: 0;
+  left: 0;
+  cursor: nw-resize;
+  transform: rotate(180deg);
+}
+.react-resizable-handle-ne {
+  top: 0;
+  right: 0;
+  cursor: ne-resize;
+  transform: rotate(270deg);
+}
+/* .react-resizable-handle-w,
+.react-resizable-handle-e {
+  top: 50%;
+  margin-top: -10px;
+  cursor: ew-resize;
+}
+.react-resizable-handle-w {
+  left: 0;
+  transform: rotate(135deg);
+} */
+/* .react-resizable-handle-e {
+  right: 0;
+  transform: rotate(315deg);
+} */
+/* .react-resizable-handle-n,
+.react-resizable-handle-s {
+  left: 50%;
+  margin-left: -10px;
+  cursor: ns-resize;
+}
+.react-resizable-handle-n {
+  top: 0;
+  transform: rotate(225deg);
+}
+.react-resizable-handle-s {
+  bottom: 0;
+  transform: rotate(45deg);
+} */
+
+
+
+
+
+
+
+.react-resizable-handle {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+}
+
+.react-resizable-handle-w,
+.react-resizable-handle-e {
+  cursor: ew-resize;
+}
+.react-resizable-handle-w {
+  left: 0;
+  top: 0;
+}
+
+.react-resizable-handle-e {
+  right: 0;
+  top: 0;
+}
+
+
+.react-resizable-handle-n,
+.react-resizable-handle-s {
+  cursor: ns-resize;
+}
+.react-resizable-handle-n {
+  top: 0;
+  transform: rotate(225deg);
+}
+.react-resizable-handle-s {
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  left: 0;
+}
+
+.react-resizable-handle-sw {
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  height: 5px;
+  cursor: sw-resize;
+  transform: rotate(45deg);  
+}
+
+.react-resizable-handle-se {
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 5px;
+  cursor: se-resize;
+  transform: rotate(-45deg);
+}
+
+
+@keyframes showblur {
+  from {
+      opacity: 0;
+  }
+  50% {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.loader-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  color: #ffffff;
+  font-size: 45px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  transform: translateZ(0);
+  animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
+}
+
+@keyframes mltShdSpin {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em,
+    0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+    0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 
+    0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 
+    0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, 
+    -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, 
+    -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em,
+     -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, 
+     -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em,
+     -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, 
+     -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 
+    0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+
+@keyframes round {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+ 

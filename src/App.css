@@ -1,0 +1,555 @@
+*{
+  box-sizing: border-box;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.Wallpaper{
+  background-image: var(--Wallpaper);
+  transition: .4s;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+.TaskBar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content(1000px);
+  background-color: var(--DarkBlur);
+  backdrop-filter: var(--Blur);
+  height: 55px;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%,0);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgb(0 0 0 / 11%);
+}
+
+.TaskbarIcon{
+  transition: var(--Transition);
+  backdrop-filter: blur(0px);
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 6px;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.TaskbarIcon:hover{
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.TaskbarIcon:not(.LauncherButton) .TaskbarIconMinimise{
+  width: 18%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  bottom: 0px;
+  border-radius: 100px;
+  transition: var(--Transition);
+}
+
+.TaskbarIcon:not(.LauncherButton) .TaskbarIconFocus{
+  width: 35%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  bottom: 0px;
+  border-radius: 100px;
+  transition: var(--Transition);
+}
+
+.TaskbarIcon:not(.LauncherButton) .TaskbarIconClose{
+  width: 0%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  bottom: 0px;
+  border-radius: 100px;
+  transition: var(--Transition);
+}
+
+.TaskbarIcon svg{
+  transition: calc(var(--Transition) / 2);
+}
+
+.TaskbarIcon:active svg{
+  transform: scale(0.8)
+}
+
+
+.Window{
+  /* background-color: var(--DarkWindow);  
+  backdrop-filter: blur(10px); */
+  position: absolute;
+  max-width: 100%;
+  z-index: 1;
+  border-radius: 8px;
+  overflow: hidden;     
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2)
+}
+
+.focus{
+  z-index: 100;
+}
+
+.w-expand{
+  width: 100%!important;
+  /* height: 100%!important; */
+  height: calc(100% - 78px)!important;
+  transform: translate(0px, 0px);
+  transition: var(--Transition);
+}
+
+.no-transition{
+  transition: 0s;
+}
+
+.transition{
+  transition: var(--Transition);
+}
+
+.w-small {
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 0%) scale(.1)!important;
+}
+
+.w-close{
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 0%) scale(0.85)!important;
+  opacity: 0;
+}
+
+.NavBar{
+  color: var(--DarkText);
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: top;
+  justify-content: space-between;
+  background-color: var(--DarkWindow);
+  backdrop-filter: var(--Blur);
+}
+
+.NavBar{
+
+  .Left{
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+      .Title{
+        font-size: .875rem;
+        font-weight: 600;
+        margin: 0;
+        margin-left: 2px;
+      }
+
+      .Icon{
+      }
+  }
+
+  .Right{
+    
+    .ActionNav{
+      padding: 0 15px;
+      box-sizing: content-box;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    /* .expand:hover, .small:hover{ background-color: grey; } */
+    /* .close:hover{ background-color: red; } */
+  }
+}
+
+.image-full{
+  width: 100%;
+  aspect-ratio: auto;
+}
+
+.cv-container{
+  overflow-y: scroll;
+  height: 100%;
+}
+
+
+.Launcher{
+  max-width: 500px;
+  width: 90%;
+  max-height: 600px;
+  height: 80%;
+  background-color: var(--DarkBlur);
+  backdrop-filter: blur(20px);
+  position: fixed;
+  left: 50%;
+  bottom: 80px;
+  transform: translate(-50%, 0);
+  border-radius: 12px;
+  transition: var(--Transition) cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  opacity: 1;
+  z-index: 101;
+  padding: 18px;  
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 12px rgb(0 0 0 / 11%);
+    
+
+    .launcher-grid{
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(auto, minmax(10px, auto)); /* Taille de ligne variable entre 10px et 100px */
+    }
+
+  .launcher-icon-container {
+    /* width: calc(100% / 6); */
+    width: 100%;
+    aspect-ratio:  1/1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;;
+    padding: 10px;
+    cursor: pointer;
+    transition: var(--Transition);    
+    border-radius: 12px;    
+    overflow: hidden;
+  }
+
+  .launcher-icon-container:hover{
+    background-color: var(--HoverBlur)
+  }
+
+  .launcher-icon-img {
+    width: 30px;
+    aspect-ratio: 1/1;
+    margin-bottom: 10px;
+  }
+
+  .launcher-icon-title{
+    font-weight: 400;
+    font-size: .675rem;
+    margin: 0;
+    text-wrap: nowrap;
+    color: var(--DarkText);
+  }
+
+  .launcher-title{
+    margin: 0 0 18px 9px;
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--DarkText);
+  }
+
+}
+
+
+.Launcher.close{
+  transform: translate(-50%, 150%);
+  transition : var(--Transition) cubic-bezier(0.9, -0.29, 0.79, 0.21);
+  opacity: 0;
+}
+
+.Photographie {
+  background-color: var(--DarkWindow);
+  backdrop-filter: var(--Blur);
+}
+
+.galerie{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100% - 190px);
+  z-index: 0;
+
+  .galerie-selected-container {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-height: 80%;
+}
+
+  .galerie-selected{
+    max-width: 100%;
+    border-radius: 12px;
+    max-height: 100%;
+    z-index: 1;
+    object-fit: contain;
+  }
+
+  .galerie-selected-blur {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    filter: blur(20px);
+    transform: scale(0.98);
+    max-width: 100%;
+    border-radius: 12px;
+    max-height: 100%;
+    z-index: 0;
+    opacity: 0;
+    object-fit: contain;
+    animation: showblur 2s normal forwards ease-in-out;
+  }
+
+ 
+
+  .galerie-list{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    overflow-x: scroll;    
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+  }
+
+  .galerie-list-item{    
+    width: 80px;
+    height: 80px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin: 8px;
+    border-radius: 10px;
+    transition: calc(var(--Transition) / 2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .galerie-list-item:hover{    
+    transform: scale(.95);
+  }
+}
+
+
+.DesktopIcon{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 0;
+  position: relative;
+  border-radius: 12px;
+  
+  &:hover{
+    background-color: var(--HoverBlur);
+    backdrop-filter: blur(20px);
+  }
+
+  .DesktopIcon-logo{
+    max-width: 60%;
+    aspect-ratio: 1/1;
+  }
+
+  .DesktopIcon-title{
+    margin: 0;
+    margin-top: 4px;
+    font-size: .875rem;
+    font-weight: 400;
+  }
+}
+
+
+.system-grid{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+
+  .system-icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    aspect-ratio: 1/1;
+    padding: 4px;
+    margin: 0 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--Transition);
+    color: var(--DarkText);
+  }
+
+  .system-icon-container:hover{
+    background-color: var(--HoverBlur);
+  }
+
+  .system-icon{
+  }
+}
+
+iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  background-color: var(--DarkWindow);
+}
+
+.video-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--DarkWindow);
+
+  .video{
+    width: 90%;
+    aspect-ratio: auto;
+    border-radius: 12px;
+  }
+}
+
+.Shape-Corner{
+  height: 12px;
+  aspect-ratio: 1/1;
+  background-image: radial-gradient(circle at 100% 0, transparent 0%, transparent 12px, var(--DarkWindow) 12px);
+  transform: rotate(180deg);
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.projects {
+  display: flex;
+  height: 100%;  
+  flex-wrap: wrap;
+  align-content: baseline;
+
+  .projects-ariane{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    grid-column: 1 / -1;
+    color: var(--DarkText);
+  }
+
+  .projects-left{
+    flex: 20%;    
+    padding: 12px;
+    /* border-right: 2px solid rgba(255,255,255,0.2); */
+    height: 100%;
+    background-color: var(--DarkWindowLight);
+    backdrop-filter: var(--Blur);
+  }
+
+  .projects-right{
+    flex: 80%;    
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: auto;
+    gap: 30px;
+    background: var(--DarkWindow);    
+    backdrop-filter: var(--Blur);
+    height: 100%;
+    align-content: start;
+    overflow-y: scroll;
+  }
+
+  .projects-title{
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: var(--DarkText);
+  }
+
+  .projects-title span{
+    margin-left: 5px;
+    height: 20px;
+    color: var(--DarkText);
+  }
+
+  .projects-title:hover{
+    background-color: var(--HoverBlur)
+  }
+
+  .projects-link{
+    text-decoration: none;
+    color: white;
+  }
+
+  .projects-space{
+    margin-bottom: 20px;
+  }
+
+  .projects-content{
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+
+    .projects-name{
+      font-size: .875rem;
+      color: var(--DarkText);
+      text-align: center;
+    }
+
+    .projects-images{
+      width: 100%;
+      border-radius: 12px;
+      aspect-ratio: 16/9;
+      background-color: var(--DarkWindow);
+    }
+
+    .projects-video-container {
+      font-size: 0;
+      border-radius: 12px;
+      aspect-ratio: 16/9;
+      width: 100%;
+    }
+
+    .projects-video {
+      width: 100%;
+      object-fit: cover;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+
+  }
+
+  
+}

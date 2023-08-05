@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PortfoliOS - The Windows Inspired OS Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+
+       /* @property --t {
+          syntax: '<percentage>';
+          inherits: false;
+          initial-value: 100%;
+        } */
+       
+
+        .portfolios-loader{
+          /* --t : 100%;
+          background: radial-gradient(circle, rgba(2,2,2,0) 0%, rgba(2,2,2,var(--t)) 0%); */
+          /* background-size: 100%; */
+          background-position: center;
+          transition: .4s;
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          z-index: 9999999;
+          left: 0;
+          top: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          flex-direction: column;
+          animation: hide 3s normal forwards ease-in-out;
+        }
+
+        .portfolios-logo{
+          font-size: 10rem;
+          transition: .4s;
+          aspect-ratio: 1/1;
+        }
+
+        .portfolios-title{            
+          font-family: 'Josefin Sans', sans-serif;
+          animation: hide 1.8s normal forwards ease-in-out;
+        }
+
+        .portfolios-logo-svg{
+            width: 200px;
+            transform: scale(1);
+            animation: zoom 3s normal forwards ease-in-out;
+        }
+
+        .portfolio-bg{
+          position: fixed;          
+          z-index: 9999998;
+          left: 0;
+          top: 0;
+          background-color: rgba(25,25,25,1);
+          width: 100%;
+          height: 100%;
+          animation: hide 3s normal forwards ease-in-out;
+          display : block;
+          opacity: 100%;
+        }
+
+        @keyframes zoom {
+          0%{ 
+            transform: scale(1);
+            display: flex;
+            opacity: 1;
+          }
+          50%{ 
+            transform: scale(1);
+            display: flex;
+            opacity: 1;
+          }
+          69%{ 
+          transform: scale(.8);
+            display: flex;
+            opacity: 1;
+          }
+          70%{ 
+            transform: scale(1);
+            display: flex;
+            opacity: 1;
+          }
+          99%{ 
+            transform: scale(60);
+            display: flex;
+            opacity: 1;
+          }
+          100%{ 
+            transform: scale(60);
+            display: none;
+            opacity: 0;
+          }
+        }
+           
+
+        @keyframes hide {
+          0%{            
+            transform: scale(1);
+            opacity: 100%; 
+          }
+          72%{
+            transform: scale(1);
+            opacity: 100%;
+          }
+          99%{ 
+            transform: scale(1);
+            opacity: 0%;
+          }
+          100%{ 
+            transform: scale(0);
+            opacity: 0%;
+          }
+        }
+
+       
+
+        
+    </style>
+  </head>
+  <body>    
+    <div class="portfolios-loader">
+      <img src="Logo-white.svg" class="portfolios-logo-svg" />
+      <h1 class="portfolios-title">PortfoliOS</h1>
+    </div> 
+    <div class="portfolio-bg"></div>
+    <div id="root">      
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
