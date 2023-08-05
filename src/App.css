@@ -179,7 +179,7 @@ html, body, #root {
   .Right{
     
     .ActionNav{
-      padding: 0 15px;
+      padding: 0 1px;
       box-sizing: content-box;
       height: 100%;
       cursor: pointer;
@@ -201,6 +201,20 @@ html, body, #root {
 }
 
 
+.Launcher.close{
+  transform: translate(-50%, 150%);
+  transition : var(--Transition) cubic-bezier(0.9, -0.29, 0.79, 0.21);
+  will-change: transform;
+  opacity: 0;
+}
+
+.Launcher.open{  
+  transform: translate(-50%, 0);
+  transition: var(--Transition) cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  will-change: transform;
+  opacity: 1;
+}
+
 .Launcher{
   max-width: 500px;
   width: 90%;
@@ -211,10 +225,7 @@ html, body, #root {
   position: fixed;
   left: 50%;
   bottom: 80px;
-  transform: translate(-50%, 0);
   border-radius: 12px;
-  transition: var(--Transition) cubic-bezier(0.18, 0.89, 0.32, 1.28);
-  opacity: 1;
   z-index: 101;
   padding: 18px;  
   display: flex;
@@ -224,7 +235,7 @@ html, body, #root {
 
     .launcher-grid{
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
       grid-template-rows: repeat(auto, minmax(10px, auto)); /* Taille de ligne variable entre 10px et 100px */
     }
 
@@ -232,6 +243,7 @@ html, body, #root {
     /* width: calc(100% / 6); */
     width: 100%;
     aspect-ratio:  1/1;
+    min-height: 70px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -270,12 +282,6 @@ html, body, #root {
 
 }
 
-
-.Launcher.close{
-  transform: translate(-50%, 150%);
-  transition : var(--Transition) cubic-bezier(0.9, -0.29, 0.79, 0.21);
-  opacity: 0;
-}
 
 .Photographie {
   background-color: var(--DarkWindow);
@@ -337,10 +343,9 @@ html, body, #root {
   }
 
   .galerie-list-item{    
-    width: 80px;
-    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
     aspect-ratio: 1/1;
-    object-fit: cover;
     margin: 8px;
     border-radius: 10px;
     transition: calc(var(--Transition) / 2);
@@ -348,6 +353,14 @@ html, body, #root {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+  }
+
+  .galerie-list-item-img{    
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
   }
 
   .galerie-list-item:hover{    
@@ -450,7 +463,7 @@ iframe {
 .projects {
   display: flex;
   height: 100%;  
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-content: baseline;
 
   .projects-ariane{
@@ -464,7 +477,7 @@ iframe {
   }
 
   .projects-left{
-    flex: 20%;    
+    flex: 10%;    
     padding: 12px;
     /* border-right: 2px solid rgba(255,255,255,0.2); */
     height: 100%;
@@ -473,10 +486,10 @@ iframe {
   }
 
   .projects-right{
-    flex: 80%;    
+    flex: 90%;    
     padding: 12px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     grid-auto-rows: auto;
     gap: 30px;
     background: var(--DarkWindow);    

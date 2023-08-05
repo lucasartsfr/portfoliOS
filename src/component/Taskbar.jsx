@@ -43,7 +43,6 @@ export default function Taskbar() {
 
     <div className='TaskBar'>
       <TaskbarIcon icon="MdWindow" name="Launcher" content="" className="LauncherButton"/>
-      {/* <TaskbarIcon icon="FcFolder" name="Explorateur" content=""/> */}
 
       <TaskbarIcon icon="FcCamera" name="Photographie">
         <Galerie />
@@ -71,7 +70,7 @@ export default function Taskbar() {
 
       <TaskbarIcon icon="FcDocument" name="CV">
         <div className='cv-container'>
-          <img src='img//PIRES LUCAS - CV.jpg' className='image-full' />
+          <img src='img//PIRES LUCAS - CV.webp' className='image-full' />
         </div>
       </TaskbarIcon>
     </div>

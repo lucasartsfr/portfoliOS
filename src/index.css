@@ -13,6 +13,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%; 
+  --DarkLoader: linear-gradient(90deg,#141414 8%,#1d1d1d 18%,#141414 33%);
 }
 
 /* Dark mode */
@@ -25,7 +26,7 @@
   --DarkWindowLight : rgba(35,35,35,0.8);
   --DarkSidebar : rgba(50,50,50,1);
   --DarkText : rgba(255,255,255,1);
-  --Wallpaper : url('img/wallpaper-dark.jpg');
+  --Wallpaper : url('/img/wallpaper-dark.jpg');
   --Blur : blur(10px);
   --HoverBlur : rgba(255, 255, 255, 0.2);
 }
@@ -40,7 +41,7 @@
   --DarkWindowLight : rgba(255,255,255,0.5);
   --DarkSidebar : rgba(200,200,200,1);
   --DarkText : rgba(0,0,0,1);
-  --Wallpaper : url('img/wallpaper-light.jpg');
+  --Wallpaper : url('/img/wallpaper-light.jpg');
   --Blur : blur(10px);
   --HoverBlur : rgba(125, 125, 125, 0.2);
 }
@@ -56,8 +57,8 @@
 
   /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
-    width: 16px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
   }
 
   *::-webkit-scrollbar-track {
@@ -270,4 +271,38 @@
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
 }
+
+.placeholder {
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f6f6;
+  background: var(--DarkLoader);
+  background-size: 800px 104px;
+}
  
+@keyframes placeHolderShimmer {
+  0% {
+      background-position: -468px 0
+  }
+
+  to {
+      background-position: 468px 0
+  }
+}
+
+@keyframes Loader {
+  0% {
+      background-color: hsla(0,0%,65%,.1)
+  }
+
+  50% {
+      background-color: hsla(0,0%,65%,.3)
+  }
+
+  to {
+      background-color: hsla(0,0%,65%,.1)
+  }
+}

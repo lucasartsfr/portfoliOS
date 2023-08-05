@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query';
 import Loading from './Loading';
+import ScrollContainer from 'react-indiana-drag-scroll'
 
 export default function Galerie() {
 
@@ -33,11 +34,15 @@ export default function Galerie() {
             <img style={{aspectRatio : ratio}} className='galerie-selected' src={`https://cdn.lucasarts.fr/img/${selected}.jpg`} />
             <img key={`Blur-${selected}`} className='galerie-selected-blur' src={`https://cdn.lucasarts.fr/small/${selected}.jpg`} />
         </div>
-        <div className='galerie-list'>
+        <ScrollContainer className="galerie-list">
             {Object.entries(data.photos).map((entrie, index) => {            
-                return <img onClick={() => Bigimage(entrie)}  key={index} className='galerie-list-item' src={`https://cdn.lucasarts.fr/small/${entrie[0]}.jpg`} />
+                return (
+                <div className='galerie-list-item placeholder' key={index}>
+                  <img onClick={() => Bigimage(entrie)} className='galerie-list-item-img' src={`https://cdn.lucasarts.fr/small/${entrie[0]}.jpg`} />
+                </div>
+                )
             })}
-        </div>
+        </ScrollContainer>
     </div>
   );
 }
