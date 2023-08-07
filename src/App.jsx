@@ -21,7 +21,10 @@ function App() {
   const DisplayWindow = allTask && Object.keys(allTask).map((task, index) => {
     // task !== "MdWindow" || && allTask[task].state !== "w-close"
     if ( allTask[task].state !== "w-close") {
-      return (<Window key={task} icon={task} title={task} index={index}>{allTask[task].content}</Window>)
+      return (
+        <Window key={task} icon={task} title={task} index={index}>
+          {allTask[task].content}
+        </Window>)
     }
   })
 

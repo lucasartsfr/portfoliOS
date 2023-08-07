@@ -1,10 +1,12 @@
 import { WindowContext } from '../WindowContext';
 import Galerie from './Galerie';
 import LauncherIcon from './LauncherIcon';
+import Loading from './Loading';
 import Projetcs from './Projetcs';
+import SuspenseLoader from './SuspenseLoader';
 import SystemIcon from './SystemIcon';
 import TaskbarIcon from './TaskbarIcon';
-import { useContext } from 'react';
+import { Suspense, useContext } from 'react';
 
 export default function Taskbar() {
 
@@ -38,41 +40,55 @@ export default function Taskbar() {
         <SystemIcon  name="Theme" action="SwitchMode"/>
         <SystemIcon  name="Full" action="FullScreen"/>
       </div>
-
     </div>
+
+ 
 
     <div className='TaskBar'>
       <TaskbarIcon icon="MdWindow" name="Launcher" content="" className="LauncherButton"/>
+      <div className='TaskBarSwipe'>
+        <TaskbarIcon icon="FcCamera" name="Photographie">
+          <Galerie />
+        </TaskbarIcon>
 
-      <TaskbarIcon icon="FcCamera" name="Photographie">
-        <Galerie />
-      </TaskbarIcon>
+        <TaskbarIcon icon="FcFolder" name="Projets Personnels">
+          <Projetcs />
+        </TaskbarIcon>
 
-      <TaskbarIcon icon="FcFolder" name="Projets Personnels">
-        <Projetcs />
-      </TaskbarIcon>
+        <TaskbarIcon icon="https://simsr3f.vercel.app/icon.png" name="ThreeJS" size={24}>
+          <SuspenseLoader>
+            {(onLoaded) => (
+                <iframe src='https://simsr3f.vercel.app/' onLoad={onLoaded}/>
+            )}
+          </SuspenseLoader>  
+        </TaskbarIcon>
 
-      <TaskbarIcon icon="FcEditImage" name="ThreeJS">
-        <iframe src='https://simsr3f.vercel.app/' />
-      </TaskbarIcon>
+        <TaskbarIcon icon="FcVideoCall" name="CV Vidéo">        
+          <div className='video-container'>
+            <video controls className='video'>
+              <source src="https://projects.lucasarts.fr/Motion/CV/CVideo.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </TaskbarIcon>
 
-      <TaskbarIcon icon="FcVideoCall" name="CV Vidéo">
-        <div className='video-container'>
-          <video controls className='video'>
-            <source src="https://projects.lucasarts.fr/Motion/CV/CVideo.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </TaskbarIcon>
+        <TaskbarIcon icon="FcGlobe" name="LucasArtsFr">
+          <SuspenseLoader>
+            {(onLoaded) => (
+              <iframe src="https://lucasarts.fr" onLoad={onLoaded}/>
+            )}
+          </SuspenseLoader>
+        </TaskbarIcon>
 
-      <TaskbarIcon icon="FcGlobe" name="LucasArtsFr">
-        <iframe src='https://lucasarts.fr' />
-      </TaskbarIcon>
-
-      <TaskbarIcon icon="FcDocument" name="CV">
-        <div className='cv-container'>
-          <img src='img//PIRES LUCAS - CV.webp' className='image-full' />
-        </div>
-      </TaskbarIcon>
+        <TaskbarIcon icon="FcDocument" name="CV">
+          <SuspenseLoader SuspenseLoader>
+            {(onLoaded) => (
+                <div className='cv-container'>
+                  <img src='img//PIRES LUCAS - CV.webp' onLoad={onLoaded} className='image-full' />
+                </div>
+            )}
+          </SuspenseLoader>        
+        </TaskbarIcon>
+      </div>
     </div>
     </>
   )

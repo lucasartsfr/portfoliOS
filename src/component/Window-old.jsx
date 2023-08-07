@@ -1,29 +1,22 @@
-import { useContext, useRef} from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import Navbar from './Navbar'
 import Draggable from 'react-draggable';
 import { WindowContext } from '../WindowContext';
-// import { ResizableBox } from 'react-resizable';
+import { ResizableBox } from 'react-resizable';
 
 export default function Window({icon, title, children, index}) {
 
-  const {allTask, setAllTask, animation, setAnimation, focus, setFocus, getViewportWidth} = useContext(WindowContext);
+  const [status, setStatus] = useState('');
+  const {allTask, animation, setAnimation, focus, setFocus, getViewportWidth} = useContext(WindowContext);
+  const [position, setPosition] = useState(null);
+  const [history, setHistory] = useState(null);
   const myRef = useRef();
-
+  
   // Stop
   const handleDragStop = (e, ui) => {
     if(ui.x!=0 && ui.y !=0){
-      //setHistory({ x: ui.x, y: ui.y });    
-      //setPosition({ x: ui.x, y: ui.y });
-      setAllTask(prev => ({
-        ...prev,
-        [icon]: {
-          ...prev[icon],
-          position: {
-            current : { x: ui.x, y: ui.y },
-            history : { x: ui.x, y: ui.y }
-          }
-        }
-      })); 
+      setHistory({ x: ui.x, y: ui.y });    
+      setPosition({ x: ui.x, y: ui.y });
     }     
     //setAnimation(true)
   };
@@ -41,7 +34,7 @@ export default function Window({icon, title, children, index}) {
     
       <Draggable  
         defaultPosition={{x: (getViewportWidth()/4), y: index*60}}
-        position={allTask[icon].position.current}
+        position={position}
         grid={[1,1]}
         onStop={handleDragStop}
         onStart={handleDragStart} 
@@ -58,15 +51,10 @@ export default function Window({icon, title, children, index}) {
           }}
           className={`Window ${allTask[icon]?.state} ${allTask[icon]?.name} ${animation && " transition"} ${icon == focus && "focus"}`}     
           id={allTask[icon]?.name.replace(/\s+/g, '')}
-          data-open={allTask[icon]?.timeOpen}
           ref={myRef}
         >
           <>
-              <Navbar 
-                selector={allTask[icon]?.name.replace(/\s+/g, '')} 
-                title={allTask[icon].name} 
-                icon={icon} 
-              />
+              <Navbar forwardRef={myRef.current} selector={allTask[icon]?.name.replace(/\s+/g, '')} title={allTask[icon].name} icon={icon} setStatus={setStatus} setPosition={setPosition} status={status} history={history}/>
               {children}
           </>
           </div>
